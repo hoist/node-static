@@ -200,6 +200,20 @@ suite.addBatch({
     }
   }
 })
+.addBatch({
+  'requesting HEAD for root file': {
+    topic : function(){
+      request.head(TEST_SERVER + '/', this.callback);
+    },
+    'should respond with 200' : function(error, response, body){
+      assert.equal(response.statusCode, 200);
+    },
+    'head must has no body' : function(error, response, body){
+      assert.isEmpty(body);
+    }
+  }
+
+})
 .addBatch(headers)
 .addBatch({
   'addings custom mime types': {
